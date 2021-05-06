@@ -22,3 +22,17 @@ sfIntRect rect)
     sfCircleShape_setTextureRect(circle->circle, circle->rect);
     return (circle);
 }
+
+void destroy_circle(circle_t *circle)
+{
+    sfTexture_destroy(circle->circle_t);
+    sfCircleShape_destroy(circle->circle);
+    free(circle);
+}
+
+void destroy_circle_array(circle_t **circles, int nb_circles)
+{
+    for (int i = 0; i != nb_circles; i++)
+        destroy_circle(circles[i]);
+    free(circles);
+}

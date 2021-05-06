@@ -20,3 +20,17 @@ sound_t *init_sound(sfBool is_loop, float volume, char *sound_filepath)
     sfSound_setVolume(sound->sound, sound->volume);
     return (sound);
 }
+
+void destroy_sound(sound_t *sound)
+{
+    sfSound_destroy(sound->sound);
+    sfSoundBuffer_destroy(sound->buff);
+    free(sound);
+}
+
+void destroy_sound_array(sound_t **sounds, int nb_sounds)
+{
+    for (int i = 0; i != nb_sounds; i++)
+        destroy_sound(sounds[i]);
+    free(sounds);
+}

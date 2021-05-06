@@ -21,3 +21,17 @@ sfIntRect rect)
     sfSprite_setTextureRect(object->object, object->rect);
     return (object);
 }
+
+void destroy_object(object_t *object)
+{
+    sfTexture_destroy(object->object_t);
+    sfSprite_destroy(object->object);
+    free(object);
+}
+
+void destroy_object_array(object_t **objects, int nb_objects)
+{
+    for (int i = 0; i != nb_objects; i++)
+        destroy_object(objects[i]);
+    free(objects);
+}

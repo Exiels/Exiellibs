@@ -16,3 +16,17 @@ sfIntRect rect)
     parallax->clock = sfClock_create();
     return (parallax);
 }
+
+void destroy_parallax(parallax_t *parallax)
+{
+    destroy_object(parallax->parallax);
+    sfClock_destroy(parallax->clock);
+    free(parallax);
+}
+
+void destroy_parallax_array(parallax_t **parallaxs, int nb_parallaxs)
+{
+    for (int i = 0; i != nb_parallaxs; i++)
+        destroy_parallax(parallaxs[i]);
+    free(parallaxs);
+}

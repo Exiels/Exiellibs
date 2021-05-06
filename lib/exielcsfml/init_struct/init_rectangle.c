@@ -22,3 +22,17 @@ sfIntRect rect)
     sfRectangleShape_setTextureRect(rectangle->rectangle, rectangle->rect);
     return (rectangle);
 }
+
+void destroy_rectangle(rectangle_t *rectangle)
+{
+    sfTexture_destroy(rectangle->rectangle_t);
+    sfRectangleShape_destroy(rectangle->rectangle);
+    free(rectangle);
+}
+
+void destroy_rectangle_array(rectangle_t **rectangles, int nb_rectangles)
+{
+    for (int i = 0; i != nb_rectangles; i++)
+        destroy_rectangle(rectangles[i]);
+    free(rectangles);
+}

@@ -26,6 +26,14 @@ void my_print_uoctal(unsigned int i)
     my_print_int(result);
 }
 
+static void set_hexa_val(char hexa[100], int temp, int j, int check)
+{
+    if (check == 0)
+        hexa[j++] = temp + 87;
+    else
+        hexa[j++] = temp + 55;
+}
+
 void my_print_uhexa(int i, int check)
 {
     int temp = 0, j = 0;
@@ -36,10 +44,7 @@ void my_print_uhexa(int i, int check)
         if (temp < 10)
             hexa[j++] = temp + '0';
         else {
-            if (check == 0)
-                hexa[j++] = temp + 87;
-            else
-                hexa[j++] = temp + 55;
+            set_hexa_val(hexa, temp, j, check);
         }
         i /= 16;
     }

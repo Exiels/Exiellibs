@@ -57,7 +57,13 @@ SRC	=	my_ctype/my_isalnum.c					\
 \
 		my_utils/my_colorprint.c				\
 		my_utils/my_readfile.c					\
-		my_utils/my_sreadfile.c
+		my_utils/my_sreadfile.c					\
+\
+		my_utils/my_arrays/my_charrcpy.c		\
+		my_utils/my_arrays/my_initcharr.c		\
+		my_utils/my_arrays/my_initintarr.c		\
+		my_utils/my_arrays/my_print2dcharr.c	\
+		my_utils/my_arrays/my_print2dintarr.c
 
 BUILD_DIR = build
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
@@ -70,17 +76,22 @@ NAME = libecl.a
 all: head h_normal $(NAME)
 
 $(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
+		@echo
+		@ar rc $(NAME) $(OBJ)
 		cp $(NAME) ../
 		cp includes/exielcl.h ../../includes/
 
 clean:
-		rm -f $(OBJ)
+		@echo
+		@rm -f $(OBJ)
+		@echo "Removed Object file"
+		@echo
 
 fclean: clean
 		rm -f $(NAME)
 		rm -f ../$(NAME)
 		rm -f ../../includes/exielcl.h
+		@echo
 
 re:	fclean all
 
@@ -88,7 +99,7 @@ re:	fclean all
 
 $(BUILD_DIR)/%.o: %.c
 					@mkdir -p $(@D)
-					@echo "  CC       $<"
+					@echo -e "\x1b[32m  GCC       $<\x1b[0m"
 					@$(CC) $(CFLAGS) -c $< -o $@
 
 head:

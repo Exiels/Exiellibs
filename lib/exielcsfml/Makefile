@@ -5,11 +5,12 @@
 ## Exiel CSFML Lib Makefile
 ##
 
-SRC	= 	my_utils/my_timer.c			\
-		my_utils/move_rect.c		\
-		my_utils/check_parallax.c	\
-\
-		buttonhandler/button_hover.c	\
+SRC	= 	my_utils/my_timer.c				\
+		my_utils/move_rect.c			\
+		my_utils/check_parallax.c		\
+		my_utils/spinbox_hover.c		\
+		my_utils/object_hover.c			\
+		my_utils/button_hover.c			\
 \
 		init_struct/init_button.c		\
 		init_struct/init_circle.c		\
@@ -19,7 +20,8 @@ SRC	= 	my_utils/my_timer.c			\
 		init_struct/init_scene.c		\
 		init_struct/init_sound.c		\
 		init_struct/init_text.c			\
-		init_struct/init_parallax.c
+		init_struct/init_parallax.c		\
+		init_struct/init_spinbox.c
 
 BUILD_DIR = build
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
@@ -32,17 +34,22 @@ NAME = libecsfml.a
 all: head h_normal $(NAME)
 
 $(NAME): $(OBJ)
-		ar rc $(NAME) $(OBJ)
+		@echo
+		@ar rc $(NAME) $(OBJ)
 		cp $(NAME) ../
 		cp includes/exielcsfml.h ../../includes/
 
 clean:
-		rm -f $(OBJ)
+		@echo
+		@rm -f $(OBJ)
+		@echo "Removed Object file"
+		@echo
 
 fclean: clean
 		rm -f $(NAME)
 		rm -f ../$(NAME)
 		rm -f ../../includes/exielcsfml.h
+		@echo
 
 re:	fclean all
 
@@ -50,7 +57,7 @@ re:	fclean all
 
 $(BUILD_DIR)/%.o: %.c
 					@mkdir -p $(@D)
-					@echo "  CC       $<"
+					@echo -e "\x1b[32m  GCC       $<\x1b[0m"
 					@$(CC) $(CFLAGS) -c $< -o $@
 
 head:

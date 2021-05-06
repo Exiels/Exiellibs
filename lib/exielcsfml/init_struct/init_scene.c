@@ -17,3 +17,15 @@ scenes_t **scenes))
     scene->quit_scene = false;
     return (scene);
 }
+
+void destroy_scene(scenes_t *scene)
+{
+    free(scene);
+}
+
+void destroy_scene_array(scenes_t **scenes, int nb_scenes)
+{
+    for (int i = 0; i != nb_scenes; i++)
+        destroy_scene(scenes[i]);
+    free(scenes);
+}

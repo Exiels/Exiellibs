@@ -22,3 +22,16 @@ text_t *init_text(char *string, char *font_path, int char_size, sfVector2f pos)
     sfText_setPosition(text->text, text->pos);
     return (text);
 }
+
+void destroy_text(text_t *text)
+{
+    sfText_destroy(text->text);
+    free(text);
+}
+
+void destroy_text_array(text_t **texts, int nb_texts)
+{
+    for (int i = 0; i != nb_texts; i++)
+        destroy_text(texts[i]);
+    free(texts);
+}

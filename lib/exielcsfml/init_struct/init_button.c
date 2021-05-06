@@ -15,3 +15,16 @@ sfIntRect rect)
     button->object = init_object(spritesheet_path, pos, rect);
     return (button);
 }
+
+void destroy_button(button_t *button)
+{
+    destroy_object(button->object);
+    free(button);
+}
+
+void destroy_button_array(button_t **buttons, int nb_buttons)
+{
+    for (int i = 0; i != nb_buttons; i++)
+        destroy_button(buttons[i]);
+    free(buttons);
+}

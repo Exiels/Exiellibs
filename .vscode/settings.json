@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "exielcsfml.h": "c",
+        "exielcfg.h": "c",
+        "stdlib.h": "c",
+        "texielcsfml.h": "c"
+    }
+}

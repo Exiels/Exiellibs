@@ -18,3 +18,16 @@ music_t *init_music(sfBool is_loop, float volume, char *music_filepath)
     sfMusic_setVolume(music->music, music->volume);
     return (music);
 }
+
+void destroy_music(music_t *music)
+{
+    sfMusic_destroy(music->music);
+    free(music);
+}
+
+void destroy_music_array(music_t **musics, int nb_musics)
+{
+    for (int i = 0; i != nb_musics; i++)
+        destroy_music(musics[i]);
+    free(musics);
+}

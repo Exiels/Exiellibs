@@ -267,11 +267,6 @@
         /// M : MAGENTA | C : CYAN | W : WHITE
         void my_colorprint(char *str, char color);
 
-        /// \brief Print the content of a 2d arr by x nb_rows
-        /// \param arr The 2darr to be printed
-        /// \param nb_rows The number of rows to be printed
-        void my_print_2darr(char **arr, int nb_rows);
-
         /// \brief Read a file.
         /// WARNING : Don't forget to free the returned string.
         /// \param filepath The filepath to the file to be read
@@ -283,5 +278,37 @@
         /// \param filepath The filepath to the file to be read
         /// \return Return a string with the content of the file
         char *my_sreadfile(char const *filepath);
+
+        //my_arrays
+        
+            /// \brief Print the content of a 2d char arr
+            /// \param arr The 2darr to be printed
+            /// \param nb_rows The number of rows to be printed
+            void my_print_2dcharr(char **arr, int nb_rows);
+
+            /// \brief Print the content of a 2d int arrs
+            /// \param arr The 2darr to be printed
+            /// \param nb_rows The number of rows to be printed
+            /// \param nb_lines The number of lines to be printed
+            void my_print_2dintarr(int **arr, int nb_rows, int nb_lines);
+
+            /// \brief Copy an char 2d array into another
+            /// \param arr The 2darr to be copied
+            /// \param nb_rows The number of rows of the arr
+            /// \param nb_lines The number of lines of the arr
+            /// \return Return an array with the content of arr
+            char **charrcpy(char **arr, int nb_rows, int nb_lines);
+
+            /// \brief Init a 2d char array
+            /// \param nb_rows The number of rows of the arr
+            /// \param nb_lines The number of lines of the arr
+            /// \return Return an the initialised array
+            char **init_charr(int nb_rows, int nb_lines);
+
+            /// \brief Init a 2d int array
+            /// \param nb_rows The number of rows of the arr
+            /// \param nb_lines The number of lines of the arr
+            /// \return Return an the initialised array
+            int **init_intarr(int nb_rows, int nb_lines);
 
 #endif /* !MYLIB_H_ */
